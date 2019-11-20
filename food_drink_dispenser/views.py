@@ -5,6 +5,12 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('THIS IS THE INDEX')
 
+def logs(request):
+    return HttpResponse('SHOW LOGS')
+
+def dispenser(request):
+    return HttpResponse('SHOW LOGS')
+
 # Create your views here.
 # def sensor(request):
 #     sensor = Sensor.objects.get(id=1)
