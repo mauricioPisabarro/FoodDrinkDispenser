@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <h1>Drink Logs</h1>
+    </body>
+    <ul>
+        {% for drink_log in object_list %}
+        <li>Quantity in mililiters: {{ drink_log.amount }}     |      Date {{ drink_log.date|date }}</li>
+        {% empty %}
+        <li>No logs yet.</li>
+        {% endfor %}
+    </ul>
+</html>

@@ -1,9 +1,10 @@
 from django.urls import path
 
-from . import views
+from food_drink_dispenser.views import index, dispenser, FoodLogListView, DrinkLogListView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('logs', views.logs, name='logs'),
-    path('dispenser', views.dispenser, name='dispenser'),
+    path('', index, name='index'),
+    path('food-logs', FoodLogListView.as_view(), name='food_logs'),
+    path('drink-logs', DrinkLogListView.as_view(), name='drink_logs'),
+    path('dispenser', dispenser, name='dispenser'),
 ]
