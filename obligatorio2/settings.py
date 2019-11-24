@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'food_drink_dispenser',
+    'django_mqtt',
+    'django_mqtt.mosquitto.auth_plugin',
+    'django_mqtt.publisher',
 ]
 
 MIDDLEWARE = [

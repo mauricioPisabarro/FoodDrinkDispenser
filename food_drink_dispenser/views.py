@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# from polls.models import Sensor
+# from food_drink_dispenser.models import MODEL_NAME
 
 def index(request):
     return HttpResponse('THIS IS THE INDEX')
