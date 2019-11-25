@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'food_drink_dispenser',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
