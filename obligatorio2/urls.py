@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('food_drink_dispenser/', include('food_drink_dispenser.urls')),
+    path('food_and_drink/', include('food_drink_dispenser.urls')),
 ]
 
 if settings.DEBUG:

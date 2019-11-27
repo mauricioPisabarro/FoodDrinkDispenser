@@ -9,17 +9,19 @@ from food_drink_dispenser.models import FoodLog
 def index(request):
     template = loader.get_template('food_drink_dispenser/index.html')
     context = {
-        
+
     }
     return HttpResponse(template.render(context, request))
+
 
 def water_logs(request):
     template = loader.get_template('food_drink_dispenser/water_logs.html')
     list_water = DrinkLog.objects.all()
     context = {
-        'list_water': list_water 
+        'list_water': list_water
     }
     return HttpResponse(template.render(context, request))
+
 
 def food_logs(request):
     template = loader.get_template('food_drink_dispenser/food_logs.html')
@@ -28,6 +30,7 @@ def food_logs(request):
         'list_food': list_food
     }
     return HttpResponse(template.render(context, request))
+
 
 def dispense_food(request):
     template = loader.get_template('food_drink_dispenser/dispense_food.html')
@@ -43,9 +46,3 @@ def dispense_water(request):
 
     }
     return HttpResponse(template.render(context, request))
-
-# Create your views here.
-# def sensor(request):
-#     sensor = Sensor.objects.get(id=1)
-
-#     return render(request, 'sensor.html', { 'sensor': sensor })

@@ -1,5 +1,7 @@
 from django.contrib import admin
-# from food_drink_dispenser.models import ElModelo
-# Register your models here.
+from food_drink_dispenser.models import FoodLog, DrinkLog, FoodDispenseRequest, DrinkDispenseRequest
 
-# admin.site.register(ElModelo)
+admin.site.register(FoodLog)
+admin.site.register(DrinkLog)
+admin.site.register(FoodDispenseRequest)
+admin.site.register(DrinkDispenseRequest)
