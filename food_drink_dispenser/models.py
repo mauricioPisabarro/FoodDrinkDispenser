@@ -22,4 +22,3 @@ def pre_save_dispense_food_handler(sender, instance, created, **kwargs):
 
 def pre_save_dispense_drink_handler(sender, instance, created, **kwargs):
     print('test')
-    
