@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals.pre_save import pre_save
 
 class FoodLog(models.Model):
     amount = models.IntegerField(default=0)
@@ -16,3 +17,10 @@ class DrinkDispenseRequest(models.Model):
     models.IntegerField(default=0)
     date = models.DateTimeField()
 
+
+def pre_save_dispense_food_handler(sender, instance, created, **kwargs):
+    print('test')
+
+def pre_save_dispense_drink_handler(sender, instance, created, **kwargs):
+    print('test')
+    
