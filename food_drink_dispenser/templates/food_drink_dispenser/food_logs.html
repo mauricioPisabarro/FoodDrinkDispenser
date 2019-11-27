@@ -1,5 +1,20 @@
 {% extends 'food_drink_dispenser/base.html'  %}
 
 {% block body %}
-    <h1>LOGS DE COMIDA</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for foodlog in list_food %}
+        <tr>
+            <th scope="row">{ foodlog.amount }</th>
+            <td>{ foodlog.date }</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
