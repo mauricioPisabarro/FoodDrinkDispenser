@@ -1,4 +1,5 @@
-from django.db import models, signals
+from django.db import models
+from django.db.models.signals import post_save
 import paho.mqtt.client as mqtt
 from enum import IntEnum
 
@@ -34,13 +35,13 @@ class DrinkDispenseRequest(models.Model):
     date = models.DateTimeField()
     status = models.IntegerField(choices=RequestStatuses.choices(), default=RequestStatuses.PENDING)
 
-def pre_save_dispense_food_handler(sender, instance, created, **kwargs):
+def post_save_dispense_food_handler(sender, instance, created, **kwargs):
     client = getMQTTClient()
-    # client.publish(FOOD_TOPIC, 'MESSAGE')
+    client.publish(FOOD_TOPIC)
 
-def pre_save_dispense_drink_handler(sender, instance, created, **kwargs):
+def post_save_dispense_drink_handler(sender, instance, created, **kwargs):
     client = getMQTTClient()
-    # client.publish(DRINK_TOPIC, 'MESSAGE')
+    client.publish(DRINK_TOPIC)
 
 
 def getMQTTClient():
@@ -53,3 +54,7 @@ def getMQTTClient():
         client.connect('127.0.0.1', port=1883)
 
     return client
+
+
+post_save.connect(post_save_dispense_food_handler, sender=FoodDispenseRequest)
+post_save.connect(post_save_dispense_drink_handler, sender=DrinkDispenseRequest)
