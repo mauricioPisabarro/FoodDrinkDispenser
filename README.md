@@ -3,7 +3,7 @@ username=IOTuser
 password=123456
 
 *Install dependencies*
-``` pip3 install bootstrap4 ```
+``` pip3 install django-bootstrap4 ```
 ``` pip3 install paho-mqtt ```
 
 *How to run*
