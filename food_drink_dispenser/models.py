@@ -19,20 +19,20 @@ class RequestStatuses(IntEnum):
 
 class FoodLog(models.Model):
     amount = models.IntegerField(default=0)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True, blank=True)
 
 class DrinkLog(models.Model):
     amount = models.IntegerField(default=0)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True, blank=True)
 
 class FoodDispenseRequest(models.Model):
     amount = models.IntegerField(default=0)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True, blank=True)
     status = models.IntegerField(choices=RequestStatuses.choices(), default=RequestStatuses.PENDING)
 
 class DrinkDispenseRequest(models.Model):
     models.IntegerField(default=0)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True, blank=True)
     status = models.IntegerField(choices=RequestStatuses.choices(), default=RequestStatuses.PENDING)
 
 def post_save_dispense_food_handler(sender, instance, created, **kwargs):
