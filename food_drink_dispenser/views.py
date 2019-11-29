@@ -34,22 +34,22 @@ def food_logs(request):
 
 @csrf_exempt
 def dispense_food(request):
-    template = loader.get_template('food_drink_dispenser/dispense_food.html')
-    context = { }
-
     if request.method == 'POST':
         waterRequest = FoodDispenseRequest.objects.create()
         waterRequest.save()
+    
+    template = loader.get_template('food_drink_dispenser/dispense_food.html')
+    context = { }
 
     return HttpResponse(template.render(context, request))
 
 @csrf_exempt
 def dispense_water(request):
-    template = loader.get_template('food_drink_dispenser/dispense_water.html')
-    context = { }
-
     if request.method == 'POST':
         waterRequest = DrinkDispenseRequest.objects.create()
         waterRequest.save()
+
+    template = loader.get_template('food_drink_dispenser/dispense_water.html')
+    context = { }
 
     return HttpResponse(template.render(context, request))
