@@ -10,6 +10,8 @@ WATER_TOPIC_SUBSCRIPTION = 'waterOutTopic'
 FOOD_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION = 'foodConfirmationOutTopic'
 WATER_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION = 'waterConfirmationOutTopic'
 
+ERROR = '-1'
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         client = mqtt.Client(client_id='mqtt-test')
@@ -46,8 +48,25 @@ def on_message(client, userdata, msg):
         print(WATER_TOPIC_SUBSCRIPTION)
         print(data)
     elif topic == FOOD_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION:
-        print(FOOD_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION)
-        print(data)
+        if data == ERROR:
+            markLastFoodRequestAsFailed()
+        else:
+            markLastFoodRequestAsSuccessfull()
     elif topic == WATER_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION:
-        print(WATER_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION)
-        print(data)
+        if data == ERROR:
+            markLastWaterRequestAsFailed()
+        else:
+            markLastWaterRequestAsSuccessfull()
+
+
+def markLastFoodRequestAsFailed():
+    return None
+
+def markLastWaterRequestAsFailed():
+    return None
+
+def markLastFoodRequestAsSuccessfull():
+    return None
+
+def markLastWaterRequestAsSuccessfull():
+    return None
