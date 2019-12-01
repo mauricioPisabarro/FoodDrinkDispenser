@@ -1,3 +1,5 @@
+{% load static %}
+
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
@@ -7,6 +9,7 @@
 <html lang="es">
     <head>
         <title>FoodDrinkDispenser</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -28,7 +31,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Administración Remota
+                      Manage
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{% url 'dispense_food' %}">Dispense Food</a>
