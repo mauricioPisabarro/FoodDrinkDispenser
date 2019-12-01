@@ -4,15 +4,15 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Amount</th>
+      <th scope="col">Status</th>
       <th scope="col">Date</th>
     </tr>
   </thead>
   <tbody>
-    {% for drinklog in waterLogList %}
+    {% for drinkRequest in waterRequestsList %}
     <tr>
-      <th scope="row">{{ drinklog.amount }}</th>
-      <td>{{ drinklog.date }}</td>
+      <th scope="row">{{ drinkRequest.status }}</th>
+      <td>{{ drinkRequest.date }}</td>
     </tr>
     {% endfor %}
   </tbody>

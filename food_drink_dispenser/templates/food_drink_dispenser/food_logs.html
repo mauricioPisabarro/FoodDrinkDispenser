@@ -9,10 +9,10 @@
         </tr>
     </thead>
     <tbody>
-        {% for foodlog in list_food %}
+        {% for foodLog in foodLogList %}
         <tr>
-            <th scope="row">{{ foodlog.amount }}</th>
-            <td>{{ foodlog.date }}</td>
+            <th scope="row">{{ foodLog.amount }}</th>
+            <td>{{ foodLog.date }}</td>
         </tr>
         {% endfor %}
     </tbody>
