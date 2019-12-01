@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from food_drink_dispenser.models import FoodLog, DrinkLog
+from food_drink_dispenser.models import FoodLog, DrinkLog, FoodDispenseRequest, DrinkDispenseRequest, RequestStatuses
 from django.db.models import signals
 import paho.mqtt.client as mqtt
 
@@ -42,31 +42,59 @@ def on_message(client, userdata, msg):
     data = msg.payload.decode('utf-8')
 
     if topic == FOOD_TOPIC_SUBSCRIPTION:
-        print(FOOD_TOPIC_SUBSCRIPTION)
-        print(data)
+        createFoodLog(data)
     elif topic == WATER_TOPIC_SUBSCRIPTION:
-        print(WATER_TOPIC_SUBSCRIPTION)
-        print(data)
+        createDrinkLog(data)
     elif topic == FOOD_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION:
         if data == ERROR:
             markLastFoodRequestAsFailed()
+            createFoodLog(data)
         else:
-            markLastFoodRequestAsSuccessfull()
+            markLastFoodRequestAsSuccessful()
     elif topic == WATER_DISPENSE_CONFIRMATION_TOPIC_SUBSCRIPTION:
         if data == ERROR:
             markLastWaterRequestAsFailed()
+            createDrinkLog(data)
         else:
-            markLastWaterRequestAsSuccessfull()
+            markLastWaterRequestAsSuccessful()
 
 
 def markLastFoodRequestAsFailed():
-    return None
+    request = FoodDispenseRequest.objects.latest('date')
+
+    if request is not None:
+        request.update(status=RequestStatuses.FAILED)
 
 def markLastWaterRequestAsFailed():
-    return None
+    request = DrinkDispenseRequest.objects.latest('date')
 
-def markLastFoodRequestAsSuccessfull():
-    return None
+    if request is not None:
+        request.update(status=RequestStatuses.FAILED)
 
-def markLastWaterRequestAsSuccessfull():
-    return None
+def markLastFoodRequestAsSuccessful():
+    request = FoodDispenseRequest.objects.latest('date')
+
+    if request is not None:
+        request.update(status=RequestStatuses.SUCCESSFUL)
+
+def markLastWaterRequestAsSuccessful():
+    request = DrinkDispenseRequest.objects.latest('date')
+
+    if request is not None:
+        request.update(status=RequestStatuses.SUCCESSFUL)
+
+def createFoodLog(amount):
+    try:
+        foodLog = FoodLog.objects.create(amount=amount)
+        foodLog.save()
+    except:
+        print('There was an error creating a food log')
+        print('The amount received was: ' + amount)
+
+def createDrinkLog(amount):
+    try:
+        foodLog = FoodLog.objects.create(amount=amount)
+        foodLog.save()
+    except:
+        print('There was an error creating a drink log')
+        print('The amount received was: ' + amount)
