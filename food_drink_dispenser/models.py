@@ -26,12 +26,10 @@ class DrinkLog(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
 
 class FoodDispenseRequest(models.Model):
-    amount = models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     status = models.IntegerField(choices=RequestStatuses.choices(), default=RequestStatuses.PENDING)
 
 class DrinkDispenseRequest(models.Model):
-    models.IntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     status = models.IntegerField(choices=RequestStatuses.choices(), default=RequestStatuses.PENDING)
 
